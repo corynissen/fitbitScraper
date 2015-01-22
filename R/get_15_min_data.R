@@ -14,21 +14,21 @@
 get_15_min_data <- function(cookie, what="steps", date){
   url <- "https://www.fitbit.com/ajaxapi"
   request <- paste0('{"template":"/mgmt/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"date":"',
-                    date, 
+                    date,
                     '","dataTypes":"',
                     what,
                     '"},"method":"getIntradayData"}]}'
   )
-  csrfToken <- stringr::str_extract(cookie, 
+  csrfToken <- stringr::str_extract(cookie,
                            "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
   body <- list(request=request, csrfToken = csrfToken)
-  response <- httr::POST(url, body=body, config(cookie=cookie))
-  
+  response <- httr::POST(url, body=body, httr::config(cookie=cookie))
+
   dat_string <- as(response, "character")
   dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
   dat_list <- dat_list[[1]]$dataSets$activity$dataPoints
   dat_list <- sapply(dat_list, "[")
-  df <- data.frame(time=as.character(unlist(dat_list[1,])), 
+  df <- data.frame(time=as.character(unlist(dat_list[1,])),
                    data=as.numeric(unlist(dat_list[2,])),
                    stringsAsFactors=F)
   df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S")
