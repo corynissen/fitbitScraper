@@ -1,6 +1,6 @@
-#' Get 15 minute interval data from fitbit using cookie returned from login function
+#' Get daily data from fitbit using cookie returned from login function
 #'
-#' Enter a string and have latitude and longitude returned using the HERE API
+#' Get daily data from fitbit.com
 #' @param cookie Cookie returned after login, specifically the "u" cookie
 #' @param what What data you wish to be returned. Options include "steps", "distance". Others to come.
 #' @param start_date Date in YYYY-MM-DD format
