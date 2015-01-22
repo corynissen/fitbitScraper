@@ -13,6 +13,7 @@ cookie <- login(email="corynissen@gmail.com", password="mypassword")
 * "floors" 
 * "active-minutes" 
 * "calories-burned"  
+  
 df <- get_15_min_data(cookie, what="steps", date="2015-01-21")  
 library("ggplot2")  
 ggplot(df) + geom_bar(aes(x=time, y=data, fill=data), stat="identity") + 
@@ -31,6 +32,7 @@ daily_data "what" options:
 * "floors" 
 * "minutesVery" 
 * "caloriesBurnedVsIntake"  
+  
 df <- get_daily_data(cookie, what="steps", start_date="2015-01-13", end_date="2015-01-20")  
 ggplot(df) + geom_point(aes(x=time, y=data))  
 
