@@ -2,7 +2,7 @@
 #'
 #' Get daily data from fitbit.com
 #' @param cookie Cookie returned after login, specifically the "u" cookie
-#' @param what What data you wish to be returned. Options include "steps", "distance". Others to come.
+#' @param what What data you wish to be returned. Options include "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake"
 #' @param start_date Date in YYYY-MM-DD format
 #' @param end_date Date in YYYY-MM-DD format
 #' @keywords data

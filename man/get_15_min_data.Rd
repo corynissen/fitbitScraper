@@ -8,7 +8,7 @@ get_15_min_data(cookie, what = "steps", date)
 \arguments{
 \item{cookie}{Cookie returned after login, specifically the "u" cookie}
 
-\item{what}{What data you wish to be returned. Options include "steps", "distance". Others to come.}
+\item{what}{What data you wish to be returned. Options include "steps", "distance", "floors", "active-minutes", "calories-burned"}
 
 \item{date}{Date in YYYY-MM-DD format}
 }
