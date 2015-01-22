@@ -1,4 +1,4 @@
-This package scrape data from fitbit.com  
+This package scrapes data from fitbit.com  
 
 Usage:  
 
