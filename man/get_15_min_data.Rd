@@ -13,7 +13,7 @@ get_15_min_data(cookie, what = "steps", date)
 \item{date}{Date in YYYY-MM-DD format}
 }
 \description{
-Enter a string and have latitude and longitude returned using the HERE API
+Get 15 minute interval data from fitbit.com
 }
 \examples{
 \dontrun{
