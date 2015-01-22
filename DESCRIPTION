@@ -13,3 +13,5 @@ imports:
   httr,
   stringr,
   RJSONIO
+URL: https://github.com/corynissen/fitbitScraper
+
