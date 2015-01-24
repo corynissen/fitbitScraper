@@ -1,10 +1,10 @@
 Package: fitbitScraper
 Title: Scrapes data from fitbit.com
-Version: 0.1
+Version: 0.1.1
 Authors@R: "Cory Nissen <corynissen@gmail.com> [aut, cre]"
 Description: Scrapes data from fitbit.com. This does not use the official API,
     but instead uses the API that the web dashboard uses to generate the graphs
-    displayed after login at www.fitbit.com.
+    displayed on the dashboard after login at www.fitbit.com.
 Depends:
     R (>= 3.0.0)
 License: MIT + file LICENSE
