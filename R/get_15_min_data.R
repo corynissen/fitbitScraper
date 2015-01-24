@@ -8,10 +8,18 @@
 #' @export
 #' @examples
 #' \dontrun{
-#' get_15_min_data(cookie, what="steps", "2015-01-20")
+#' get_15_min_data(cookie, what="steps", date="2015-01-20")
 #' }
 #' get_15_min_data
 get_15_min_data <- function(cookie, what="steps", date){
+  if(!is.character(cookie)){stop("cookie must be a character string")}
+  if(!is.character(what)){stop("what must be a character string")}
+  if(!is.character(date)){stop("date must be a character string")}
+  if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", date)){stop('date must have format "YYYY-MM-DD"')}
+  if(!what %in% c("steps", "distance", "floors", "active-minutes", "calories-burned")){
+    stop('what must be one of "steps", "distance", "floors", "active-minutes", "calories-burned"')
+  }
+
   url <- "https://www.fitbit.com/ajaxapi"
   request <- paste0('{"template":"/mgmt/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"date":"',
                     date,
@@ -31,6 +39,8 @@ get_15_min_data <- function(cookie, what="steps", date){
   df <- data.frame(time=as.character(unlist(dat_list[1,])),
                    data=as.numeric(unlist(dat_list[2,])),
                    stringsAsFactors=F)
-  df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S")
+  tz <- Sys.timezone()
+  if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
+  df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)
   return(df)
 }

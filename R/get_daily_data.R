@@ -13,6 +13,16 @@
 #' }
 #' get_daily_data
 get_daily_data <- function(cookie, what="steps", start_date, end_date){
+  if(!is.character(cookie)){stop("cookie must be a character string")}
+  if(!is.character(what)){stop("what must be a character string")}
+  if(!is.character(start_date)){stop("start_date must be a character string")}
+  if(!is.character(end_date)){stop("end_date must be a character string")}
+  if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", start_date)){stop('start_date must have format "YYYY-MM-DD"')}
+  if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", end_date)){stop('end_date must have format "YYYY-MM-DD"')}
+  if(!what %in% c("steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake")){
+    stop('what must be one of "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake"')
+  }
+
   url <- "https://www.fitbit.com/graph/getNewGraphData"
   query <- list("type" = what,
                 "dateFrom" = start_date,
@@ -29,6 +39,8 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
   df <- data.frame(time=as.character(unlist(dat_list[1,])),
                    data=as.numeric(unlist(dat_list[2,])),
                    stringsAsFactors=F)
-  df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S")
+  tz <- Sys.timezone()
+  if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
+  df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)
   return(df)
 }
