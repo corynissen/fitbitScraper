@@ -17,7 +17,7 @@ Get 15 minute interval data from fitbit.com
 }
 \examples{
 \dontrun{
-get_15_min_data(cookie, what="steps", "2015-01-20")
+get_15_min_data(cookie, what="steps", date="2015-01-20")
 }
 get_15_min_data
 }

@@ -11,11 +11,11 @@ login(email, password)
 \item{password}{Password used to login to fitbit.com}
 }
 \description{
-Enter a string and have latitude and longitude returned using the HERE API
+Get the login cookie after login at www.fitbit.com
 }
 \examples{
 \dontrun{
-login(email="corynissen<at>gmail.com", password="mypasswordhere)
+cookie <- login(email="corynissen<at>gmail.com", password="mypasswordhere")
 }
 login
 }
