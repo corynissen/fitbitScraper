@@ -1,4 +1,6 @@
 
-geocodeHERE 0.1.1
-* unzip files in temp directory for better cleanup
-* lower R dependency to 3.0.0 for wider adoption
+fitbitScraper 0.1.1
+* first CRAN submission for fitbitScraper
+* Basic checks included for arguments
+* tz added to the return dataframes as.POSIXct date field
+* documentation cleanup
