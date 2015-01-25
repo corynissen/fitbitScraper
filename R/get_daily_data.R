@@ -1,6 +1,6 @@
-#' Get daily data from fitbit using cookie returned from login function
-#'
 #' Get daily data from fitbit.com
+#'
+#' Get daily data from fitbit using cookie returned from login function
 #' @param cookie Cookie returned after login, specifically the "u" cookie
 #' @param what What data you wish to be returned. Options include "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake"
 #' @param start_date Date in YYYY-MM-DD format
