@@ -1,3 +1,5 @@
+### fitBitScraper 0.1.1
+
 This package scrapes data from fitbit.com  
 It only works if you use email / password to login. Not sure about facebook or google login.  
 
@@ -24,5 +26,9 @@ ggplot(df) + geom_bar(aes(x=time, y=data, fill=data), stat="identity") +
 # daily_data "what" options: "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake"   
 df <- get_daily_data(cookie, what="steps", start_date="2015-01-13", end_date="2015-01-20")  
 ggplot(df) + geom_point(aes(x=time, y=data))  
+```
+### Dev branch has new function called get_sleep_data()
+```R
+devtools::install_github("corynissen/fitbitScraper", ref="dev")
 ```
 
