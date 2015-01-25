@@ -1,5 +1,8 @@
 
 
+# fitbitScraper 0.1.2
+* Added get_sleep_data()
+
 # fitbitScraper 0.1.1
 * Basic checks included for arguments
 * tz added to the return dataframes as.POSIXct date field
