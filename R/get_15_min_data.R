@@ -26,7 +26,7 @@ get_15_min_data <- function(cookie, what="steps", date){
                     '","dataTypes":"',
                     what,
                     '"},"method":"getIntradayData"}]}'
-  )
+                    )
   csrfToken <- stringr::str_extract(cookie,
                            "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
   body <- list(request=request, csrfToken = csrfToken)
