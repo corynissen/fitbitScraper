@@ -21,7 +21,7 @@ A list with two things
  \item{df}{A data frame containing various sleep values over time}
 }
 \description{
-Get official data export from fitbit premium using cookie returned from login function
+Get official data export from fitbit premium using cookie returned from login function. This should be used over individual calls to get_daily_data(), etc. if you subscribe to premium and data export is allowed. I'm not subscribed to premium, but it works for me...
 }
 \examples{
 \dontrun{
