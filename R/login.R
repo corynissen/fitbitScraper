@@ -5,6 +5,7 @@
 #' @param password Password used to login to fitbit.com
 #' @keywords login
 #' @export
+#' @return A string containing the cookie that is returned after login at www.fitbit.com
 #' @examples
 #' \dontrun{
 #' cookie <- login(email="corynissen<at>gmail.com", password="mypasswordhere")

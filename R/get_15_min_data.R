@@ -6,6 +6,9 @@
 #' @param date Date in YYYY-MM-DD format
 #' @keywords data
 #' @export
+#' @return A dataframe with two columns:
+#'  \item{time}{A POSIXct time value}
+#'  \item{data}{The data column corresponding to the choice of "what"}
 #' @examples
 #' \dontrun{
 #' get_15_min_data(cookie, what="steps", date="2015-01-20")

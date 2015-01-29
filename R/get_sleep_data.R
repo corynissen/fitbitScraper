@@ -6,6 +6,9 @@
 #' @param end_date Date in YYYY-MM-DD format
 #' @keywords data
 #' @export
+#' @return A list with two things
+#'  \item{summary}{A list of sleep summary values}
+#'  \item{df}{A data frame containing various sleep values over time}
 #' @examples
 #' \dontrun{
 #' get_sleep_data(cookie, start_date="2015-01-13", end_date="2015-01-20")

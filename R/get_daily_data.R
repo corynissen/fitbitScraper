@@ -7,6 +7,9 @@
 #' @param end_date Date in YYYY-MM-DD format
 #' @keywords data
 #' @export
+#' @return A dataframe with two columns:
+#'  \item{time}{A POSIXct time value}
+#'  \item{data}{The data column corresponding to the choice of "what"}
 #' @examples
 #' \dontrun{
 #' get_daily_data(cookie, what="steps", start_date="2015-01-13", end_date="2015-01-20")
