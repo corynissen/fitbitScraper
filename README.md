@@ -30,6 +30,7 @@ ggplot(df) + geom_point(aes(x=time, y=data))
 ### Dev branch has new functions 
 - get_sleep_data()
 - get_weight_data() 
+- get_premium_export()
 
 ```R
 devtools::install_github("corynissen/fitbitScraper", ref="dev")
