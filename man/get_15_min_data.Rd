@@ -12,6 +12,11 @@ get_15_min_data(cookie, what = "steps", date)
 
 \item{date}{Date in YYYY-MM-DD format}
 }
+\value{
+A dataframe with two columns:
+ \item{time}{A POSIXct time value}
+ \item{data}{The data column corresponding to the choice of "what"}
+}
 \description{
 Get 15 minute interval data from fitbit using cookie returned from login function
 }

@@ -12,6 +12,11 @@ get_sleep_data(cookie, start_date = "2015-01-13", end_date = "2015-01-20")
 
 \item{end_date}{Date in YYYY-MM-DD format}
 }
+\value{
+A list with two things
+ \item{summary}{A list of sleep summary values}
+ \item{df}{A data frame containing various sleep values over time}
+}
 \description{
 Get sleep data from fitbit using cookie returned from login function
 }

@@ -10,6 +10,9 @@ login(email, password)
 
 \item{password}{Password used to login to fitbit.com}
 }
+\value{
+A string containing the cookie that is returned after login at www.fitbit.com
+}
 \description{
 Get the login cookie after login at www.fitbit.com
 }

@@ -14,6 +14,11 @@ get_daily_data(cookie, what = "steps", start_date, end_date)
 
 \item{end_date}{Date in YYYY-MM-DD format}
 }
+\value{
+A dataframe with two columns:
+ \item{time}{A POSIXct time value}
+ \item{data}{The data column corresponding to the choice of "what"}
+}
 \description{
 Get daily data from fitbit using cookie returned from login function
 }
