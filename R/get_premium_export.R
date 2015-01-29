@@ -1,6 +1,6 @@
 #' Get official data export from fitbit.com premium
 #'
-#' Get official data export from fitbit premium using cookie returned from login function
+#' Get official data export from fitbit premium using cookie returned from login function. This should be used over individual calls to get_daily_data(), etc. if you subscribe to premium and data export is allowed. I'm not subscribed to premium, but it works for me...
 #' @param cookie Cookie returned after login, specifically the "u" cookie
 #' @param what What data you wish to be returned. Options include "BODY", "FOODS", "ACTIVITIES", "SLEEP"
 #' @param start_date Date in YYYY-MM-DD format
