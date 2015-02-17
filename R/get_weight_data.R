@@ -8,7 +8,7 @@
 #' @export
 #' @return A dataframe with two columns:
 #'  \item{time}{A POSIXct time value}
-#'  \item{data}{The data column corresponding to weight}
+#'  \item{weight}{The data column corresponding to weight}
 #' @examples
 #' \dontrun{
 #' get_weight_data(cookie, start_date="2015-01-13", end_date="2015-01-20")
@@ -35,7 +35,7 @@ get_weight_data <- function(cookie, start_date, end_date){
   dat_list <- dat_list[[1]]$dataSets$weight$dataPoints
   dat_list <- sapply(dat_list, "[")
   df <- data.frame(time=as.character(unlist(dat_list[1,])),
-                   data=as.numeric(unlist(dat_list[2,])),
+                   weight=as.numeric(unlist(dat_list[2,])),
                    stringsAsFactors=F)
   tz <- Sys.timezone()
   if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
