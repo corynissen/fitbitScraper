@@ -42,6 +42,7 @@ get_15_min_data <- function(cookie, what="steps", date){
   df <- data.frame(time=as.character(unlist(dat_list[1,])),
                    data=as.numeric(unlist(dat_list[2,])),
                    stringsAsFactors=F)
+  names(df) <- c("time", what)
   tz <- Sys.timezone()
   if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
   df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)
