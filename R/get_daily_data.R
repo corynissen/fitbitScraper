@@ -28,43 +28,52 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
          "getTimeInHeartRateZonesPerDay"')
   }
 
-  url <- "https://www.fitbit.com/graph/getNewGraphData"
-  query <- list("type" = what,
-                "dateFrom" = start_date,
-                "dateTo" = end_date,
-                "granularity" = "DAILY",
-                "hidePrecreationData" = "false")
+  if(what=="getTimeInHeartRateZonesPerDay"){
+    url <- "https://www.fitbit.com/ajaxapi"
+    request <- paste0('{"template":"/mgmt/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"startDate":"',
+                      startDate,
+                      '","endDate":"',
+                      endDate,
+                      '"},"method":"',
+                      what,
+                      '"}]}'
+    )
+    csrfToken <- stringr::str_extract(cookie,
+                                      "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
+    body <- list(request=request, csrfToken = csrfToken)
+    response <- httr::POST(url, body=body, httr::config(cookie=cookie))
+  }else{
+    url <- "https://www.fitbit.com/graph/getNewGraphData"
+    query <- list("type" = what,
+                  "dateFrom" = start_date,
+                  "dateTo" = end_date,
+                  "granularity" = "DAILY",
+                  "hidePrecreationData" = "false")
 
-  response <- httr::GET(url, query=query, httr::config(cookie=cookie))
+    response <- httr::GET(url, query=query, httr::config(cookie=cookie))
+  }
 
   dat_string <- as(response, "character")
   dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
-  dat_list <- dat_list[[1]]$dataSets$activity$dataPoints
-  dat_list <- sapply(dat_list, "[")
-  df <- data.frame(time=as.character(unlist(dat_list[1,])),
-                   data=as.numeric(unlist(dat_list[2,])),
-                   stringsAsFactors=F)
-  names(df) <- c("time", what)
+
+  if(what=="getTimeInHeartRateZonesPerDay"){
+    zones <- sapply(dat_list, "[", "value")
+    df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
+                     zone1=as.numeric(sapply(zones, "[", "IN_DEFAULT_ZONE_1")),
+                     zone2=as.numeric(sapply(zones, "[", "IN_DEFAULT_ZONE_2")),
+                     zone3=as.numeric(sapply(zones, "[", "IN_DEFAULT_ZONE_3")),
+                     stringsAsFactors=F)
+
+  }else{
+    dat_list <- dat_list[[1]]$dataSets$activity$dataPoints
+    df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
+                     data=as.numeric(unlist(sapply(dat_list, "[", 2))),
+                     stringsAsFactors=F)
+    names(df) <- c("time", what)
+  }
+
   tz <- Sys.timezone()
   if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
   df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)
   return(df)
 }
-
-what <- "getTimeInHeartRateZonesPerDay"
-startDate <- "2015-03-01"
-endDate <- "2015-03-10"
-url <- "https://www.fitbit.com/ajaxapi"
-request <- paste0('{"template":"/mgmt/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"startDate":"',
-                  startDate,
-                  '","endDate":"',
-                  endDate,
-                  '"},"method":"',
-                  what,
-                  '"}]}'
-)
-csrfToken <- stringr::str_extract(cookie,
-                                  "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
-body <- list(request=request, csrfToken = csrfToken)
-response <- httr::POST(url, body=body, httr::config(cookie=cookie))
-
