@@ -4,12 +4,12 @@
 \alias{get_15_min_data}
 \title{Get 15 minute interval data from fitbit.com}
 \usage{
-get_15_min_data(cookie, what = "steps", date)
+get_15_min_data(...)
 }
 \arguments{
 \item{cookie}{Cookie returned after login, specifically the "u" cookie}
 
-\item{what}{What data you wish to be returned. Options include "steps", "distance", "floors", "active-minutes", "calories-burned"}
+\item{what}{What data you wish to be returned. Options include "steps", "distance", "floors", "active-minutes", "calories-burned", "heart-rate"}
 
 \item{date}{Date in YYYY-MM-DD format}
 }
