@@ -58,12 +58,27 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
 
   if(what=="getTimeInHeartRateZonesPerDay"){
     zones <- sapply(dat_list, "[", "value")
-    df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
-                     zone1=as.numeric(sapply(zones, "[", "IN_DEFAULT_ZONE_1")),
-                     zone2=as.numeric(sapply(zones, "[", "IN_DEFAULT_ZONE_2")),
-                     zone3=as.numeric(sapply(zones, "[", "IN_DEFAULT_ZONE_3")),
+    times <- as.character(unlist(sapply(dat_list, "[", "dateTime")))
+    if(is.null(unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_1")))){
+      zone1 <- rep(0, length(times))
+    }else{
+      zone1 <- unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_1"))
+    }
+    if(is.null(unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_2")))){
+      zone2 <- rep(0, length(times))
+    }else{
+      zone2 <- unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_2"))
+    }
+    if(is.null(unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_3")))){
+      zone3 <- rep(0, length(times))
+    }else{
+      zone3 <- unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_3"))
+    }
+    df <- data.frame(time=times,
+                     zone1=zone1,
+                     zone2=zone2,
+                     zone3=zone3,
                      stringsAsFactors=F)
-
   }else{
     dat_list <- dat_list[[1]]$dataSets$activity$dataPoints
     df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
