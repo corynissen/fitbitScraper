@@ -31,9 +31,9 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
   if(what=="getTimeInHeartRateZonesPerDay"){
     url <- "https://www.fitbit.com/ajaxapi"
     request <- paste0('{"template":"/mgmt/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"startDate":"',
-                      startDate,
+                      start_date,
                       '","endDate":"',
-                      endDate,
+                      end_date,
                       '"},"method":"',
                       what,
                       '"}]}'
