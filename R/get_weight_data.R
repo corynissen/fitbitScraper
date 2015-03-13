@@ -22,11 +22,9 @@ get_weight_data <- function(cookie, start_date, end_date){
   if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", end_date)){stop('end_date must have format "YYYY-MM-DD"')}
 
   url <- "https://www.fitbit.com/graph/getNewGraphData"
-  query <- list("type" = what,
+  query <- list("type" = "weight",
                 "dateFrom" = start_date,
-                "dateTo" = end_date,
-                "granularity" = "DAILY",
-                "hidePrecreationData" = "false")
+                "dateTo" = end_date)
 
   response <- httr::GET(url, query=query, httr::config(cookie=cookie))
 
