@@ -19,8 +19,10 @@ get_15_min_data <- function(cookie, what="steps", date){
   if(!is.character(what)){stop("what must be a character string")}
   if(!is.character(date)){stop("date must be a character string")}
   if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", date)){stop('date must have format "YYYY-MM-DD"')}
-  if(!what %in% c("steps", "distance", "floors", "active-minutes", "calories-burned")){
-    stop('what must be one of "steps", "distance", "floors", "active-minutes", "calories-burned"')
+  if(!what %in% c("steps", "distance", "floors", "active-minutes", "calories-burned",
+                  "heart-rate")){
+    stop('what must be one of "steps", "distance", "floors", "active-minutes", "calories-burned",
+         "heart-rate"')
   }
 
   url <- "https://www.fitbit.com/ajaxapi"
@@ -38,10 +40,15 @@ get_15_min_data <- function(cookie, what="steps", date){
   dat_string <- as(response, "character")
   dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
   dat_list <- dat_list[[1]]$dataSets$activity$dataPoints
-  dat_list <- sapply(dat_list, "[")
-  df <- data.frame(time=as.character(unlist(dat_list[1,])),
-                   data=as.numeric(unlist(dat_list[2,])),
-                   stringsAsFactors=F)
+  if(what=="heart-rate"){
+    df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
+                     data=as.numeric(unlist(sapply(dat_list, "[", "bpm"))),
+                     stringsAsFactors=F)
+  }else{
+    df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
+                     data=as.numeric(unlist(sapply(dat_list, "[", 2))),
+                     stringsAsFactors=F)
+  }
   names(df) <- c("time", what)
   tz <- Sys.timezone()
   if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
