@@ -1,4 +1,4 @@
-### fitBitScraper 0.1.1
+### fitBitScraper 0.1.2
 
 This package scrapes data from fitbit.com  
 It only works if you use email / password to login. Not sure about facebook or google login.  
