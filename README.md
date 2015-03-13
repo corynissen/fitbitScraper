@@ -33,10 +33,10 @@ ggplot(df) + geom_point(aes(x=time, y=data))
 - get_premium_export() 
 - get_intraday_data() , replaces deprecated get_15_min_data()
 
-Just added support for heart rate data in get_intraday_data() and get_daily_data()...
-get_daily_data(cookie, what="getTimeInHeartRateZonesPerDay", start_date="2015-03-01", 
-               end_date="2015-03-10")
-get_intraday_data(cookie, what="heart-rate", date="2015-03-10")
+Just added support for heart rate data in get_intraday_data() and get_daily_data()...  
+get_daily_data(cookie, what="getTimeInHeartRateZonesPerDay", start_date="2015-03-01",  
+               end_date="2015-03-10")  
+get_intraday_data(cookie, what="heart-rate", date="2015-03-10")  
 
 ```R
 devtools::install_github("corynissen/fitbitScraper", ref="dev")
