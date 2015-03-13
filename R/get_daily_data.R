@@ -22,8 +22,10 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
   if(!is.character(end_date)){stop("end_date must be a character string")}
   if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", start_date)){stop('start_date must have format "YYYY-MM-DD"')}
   if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", end_date)){stop('end_date must have format "YYYY-MM-DD"')}
-  if(!what %in% c("steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake")){
-    stop('what must be one of "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake"')
+  if(!what %in% c("steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake",
+                  "getTimeInHeartRateZonesPerDay")){
+    stop('what must be one of "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake",
+         "getTimeInHeartRateZonesPerDay"')
   }
 
   url <- "https://www.fitbit.com/graph/getNewGraphData"
@@ -48,3 +50,21 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
   df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)
   return(df)
 }
+
+what <- "getTimeInHeartRateZonesPerDay"
+startDate <- "2015-03-01"
+endDate <- "2015-03-10"
+url <- "https://www.fitbit.com/ajaxapi"
+request <- paste0('{"template":"/mgmt/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"startDate":"',
+                  startDate,
+                  '","endDate":"',
+                  endDate,
+                  '"},"method":"',
+                  what,
+                  '"}]}'
+)
+csrfToken <- stringr::str_extract(cookie,
+                                  "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
+body <- list(request=request, csrfToken = csrfToken)
+response <- httr::POST(url, body=body, httr::config(cookie=cookie))
+
