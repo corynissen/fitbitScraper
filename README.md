@@ -27,7 +27,7 @@ ggplot(df) + geom_bar(aes(x=time, y=data, fill=data), stat="identity") +
 df <- get_daily_data(cookie, what="steps", start_date="2015-01-13", end_date="2015-01-20")  
 ggplot(df) + geom_point(aes(x=time, y=data))  
 ```
-### Dev branch has new functions 
+### New functions 
 - get_sleep_data()
 - get_weight_data() 
 - get_premium_export() 
@@ -39,7 +39,5 @@ get_daily_data(cookie, what="getTimeInHeartRateZonesPerDay", start_date="2015-03
                end_date="2015-03-10")  
 get_intraday_data(cookie, what="heart-rate", date="2015-03-10")  
 ```
-```R
-devtools::install_github("corynissen/fitbitScraper", ref="dev")
-```
+
 
