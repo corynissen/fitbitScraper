@@ -7,11 +7,7 @@
 get_15_min_data(...)
 }
 \arguments{
-\item{cookie}{Cookie returned after login, specifically the "u" cookie}
-
-\item{what}{What data you wish to be returned. Options include "steps", "distance", "floors", "active-minutes", "calories-burned", "heart-rate"}
-
-\item{date}{Date in YYYY-MM-DD format}
+\item{...}{Arguments from get_intraday_data()}
 }
 \value{
 A dataframe with two columns:
