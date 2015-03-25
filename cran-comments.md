@@ -6,3 +6,4 @@ fitbitScraper 0.1.2
 * Added heart-rate for get_15_min_data() and get_daily_data()
 * added get_intraday_data()
 * Deprecated get_15_min_data(), use get_intraday_data() instead
+* title case title field
