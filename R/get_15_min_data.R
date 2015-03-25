@@ -1,9 +1,7 @@
 #' Get 15 minute interval data from fitbit.com
 #'
 #' Get 15 minute interval data from fitbit using cookie returned from login function
-#' @param cookie Cookie returned after login, specifically the "u" cookie
-#' @param what What data you wish to be returned. Options include "steps", "distance", "floors", "active-minutes", "calories-burned", "heart-rate"
-#' @param date Date in YYYY-MM-DD format
+#' @param ... Arguments from get_intraday_data()
 #' @keywords data
 #' @export
 #' @return A dataframe with two columns:
