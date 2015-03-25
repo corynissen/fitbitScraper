@@ -62,17 +62,20 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
     if(is.null(unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_1")))){
       zone1 <- rep(0, length(times))
     }else{
-      zone1 <- unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_1"))
+      zone1 <- sapply(zones, "[", "IN_DEFAULT_ZONE_1")
+      zone1 <- unname(sapply(zone1, function(x)ifelse(is.null(x), 0, x)))
     }
     if(is.null(unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_2")))){
       zone2 <- rep(0, length(times))
     }else{
-      zone2 <- unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_2"))
+      zone2 <- sapply(zones, "[", "IN_DEFAULT_ZONE_2")
+      zone2 <- unname(sapply(zone2, function(x)ifelse(is.null(x), 0, x)))
     }
     if(is.null(unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_3")))){
       zone3 <- rep(0, length(times))
     }else{
-      zone3 <- unlist(sapply(zones, "[", "IN_DEFAULT_ZONE_3"))
+      zone3 <- sapply(zones, "[", "IN_DEFAULT_ZONE_3")
+      zone3 <- unname(sapply(zone3, function(x)ifelse(is.null(x), 0, x)))
     }
     df <- data.frame(time=times,
                      zone1=zone1,
