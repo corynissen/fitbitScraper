@@ -26,7 +26,7 @@ get_intraday_data <- function(cookie, what="steps", date){
   }
 
   url <- "https://www.fitbit.com/ajaxapi"
-  request <- paste0('{"template":"/mgmt/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"date":"',
+  request <- paste0('{"template":"/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"date":"',
                     date,
                     '","dataTypes":"',
                     what,
