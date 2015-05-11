@@ -22,7 +22,7 @@ get_sleep_data <- function(cookie, start_date="2015-01-13", end_date="2015-01-20
   if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", end_date)){stop('end_date must have format "YYYY-MM-DD"')}
 
   url <- "https://www.fitbit.com/ajaxapi"
-  request <- paste0('{"template":"/mgmt/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"dateFrom":"',
+  request <- paste0('{"template":"/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"dateFrom":"',
                     start_date,
                     '","dateTo":"',
                     end_date,
