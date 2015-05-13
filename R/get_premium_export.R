@@ -26,6 +26,10 @@ get_premium_export <- function(cookie, what="ACTIVITIES", start_date="2015-01-13
     stop('what must be one of "BODY", "FOODS", "ACTIVITIES", "SLEEP"')
   }
 
+  # as of 5/2015-ish, the date format is not MM/DD/YYYY
+  start_date <- format(as.Date(start_date), "%m/%d/%Y")
+  end_date <- format(as.Date(end_date), "%m/%d/%Y")
+
   url <- "https://www.fitbit.com/export/user/data"
   header <- list("Content-Type"="application/x-www-form-urlencoded",
                  "u"=cookie,
