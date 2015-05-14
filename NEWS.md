@@ -1,5 +1,8 @@
 
 
+### fitbitScraper 0.1.3
+* Changed the API calls to match changes on fitbit end of things.
+
 ### fitbitScraper 0.1.2
 * Added get_sleep_data()
 * Added get_premium_export()

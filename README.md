@@ -7,7 +7,7 @@ It only works if you use email / password to login. Not sure about facebook or g
 Usage:  
 
 ```R
-devtools::install_github("corynissen/fitbitScraper@dev")  
+install.packages("fitbitScraper")
 library("fitbitScraper")
 
 cookie <- login(email="corynissen@gmail.com", password="mypassword")  
