@@ -1,9 +1,9 @@
 Package: fitbitScraper
-Title: Scrapes Data from Fitbit.com
-Version: 0.1.2
+Title: Scrapes Data from www.fitbit.com
+Version: 0.1.3
 Author: Cory Nissen <corynissen@gmail.com> [aut, cre]
 Maintainer: Cory Nissen <corynissen@gmail.com>
-Description: Scrapes data from fitbit.com. This does not use the official API,
+Description: Scrapes data from www.fitbit.com. This does not use the official API,
     but instead uses the API that the web dashboard uses to generate the graphs
     displayed on the dashboard after login at www.fitbit.com.
 Depends:
