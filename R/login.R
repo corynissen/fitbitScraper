@@ -27,7 +27,7 @@ login <- function(email, password){
                   "Referer" = "https://www.fitbit.com/login",
                   "Accept-Encoding" = "gzip, deflate",
                   "Accept-Language" = "en-US,en;q=0.8")
-  body <- list("email"=email, "password"=password, "rememberMe"="true",
+  body <- list("email"=email, "password"=password, "rememberMe"="false",
                "login"="Log In")
 
   a <- httr::POST(url, headers=headers, body=body)
