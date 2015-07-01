@@ -4,12 +4,14 @@
 \alias{login}
 \title{Login to fitbit.com and get cookie}
 \usage{
-login(email, password)
+login(email, password, rememberMe = FALSE)
 }
 \arguments{
 \item{email}{Email address used to login to fitbit.com}
 
 \item{password}{Password used to login to fitbit.com}
+
+\item{rememberMe}{Value for rememberMe during login, default is FALSE, but changing to TRUE may help with login issues}
 }
 \value{
 A string containing the cookie that is returned after login at www.fitbit.com
