@@ -1,6 +1,6 @@
 Package: fitbitScraper
 Title: Scrapes Data from www.fitbit.com
-Version: 0.1.3
+Version: 0.1.4
 Author: Cory Nissen <corynissen@gmail.com> [aut, cre]
 Maintainer: Cory Nissen <corynissen@gmail.com>
 Description: Scrapes data from www.fitbit.com. This does not use the official API,

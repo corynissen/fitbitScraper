@@ -3,6 +3,7 @@
 #' Get the login cookie after login at www.fitbit.com
 #' @param email Email address used to login to fitbit.com
 #' @param password Password used to login to fitbit.com
+#' @param rememberMe Value for rememberMe during login, default is FALSE, but changing to TRUE may help with login issues
 #' @keywords login
 #' @export
 #' @return A string containing the cookie that is returned after login at www.fitbit.com
@@ -11,9 +12,11 @@
 #' cookie <- login(email="corynissen<at>gmail.com", password="mypasswordhere")
 #' }
 #' login
-login <- function(email, password){
+login <- function(email, password, rememberMe=FALSE){
   if(!is.character(email)){stop("email must be a character string")}
   if(!is.character(password)){stop("password must be a character string")}
+
+  rememberMe <- ifelse(rememberMe, "true", "false")
 
   url <- "https://www.fitbit.com/login"
   headers <- list("Host" = "www.fitbit.com",
@@ -27,7 +30,7 @@ login <- function(email, password){
                   "Referer" = "https://www.fitbit.com/login",
                   "Accept-Encoding" = "gzip, deflate",
                   "Accept-Language" = "en-US,en;q=0.8")
-  body <- list("email"=email, "password"=password, "rememberMe"="true",
+  body <- list("email"=email, "password"=password, "rememberMe"=rememberMe,
                "login"="Log In")
 
   a <- httr::POST(url, headers=headers, body=body)

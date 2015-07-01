@@ -2,7 +2,7 @@
 #'
 #' Get daily data from fitbit using cookie returned from login function
 #' @param cookie Cookie returned after login, specifically the "u" cookie
-#' @param what What data you wish to be returned. Options include "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake", "getTimeInHeartRateZonesPerDay"
+#' @param what What data you wish to be returned. Options include "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake", "getTimeInHeartRateZonesPerDay", "getRestingHeartRateData"
 #' @param start_date Date in YYYY-MM-DD format
 #' @param end_date Date in YYYY-MM-DD format
 #' @keywords data
@@ -23,12 +23,12 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
   if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", start_date)){stop('start_date must have format "YYYY-MM-DD"')}
   if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", end_date)){stop('end_date must have format "YYYY-MM-DD"')}
   if(!what %in% c("steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake",
-                  "getTimeInHeartRateZonesPerDay")){
+                  "getTimeInHeartRateZonesPerDay", "getRestingHeartRateData")){
     stop('what must be one of "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake",
-         "getTimeInHeartRateZonesPerDay"')
+         "getTimeInHeartRateZonesPerDay", "getRestingHeartRateData"')
   }
 
-  if(what=="getTimeInHeartRateZonesPerDay"){
+  if(what %in% c("getTimeInHeartRateZonesPerDay", "getRestingHeartRateData")){
     url <- "https://www.fitbit.com/ajaxapi"
     request <- paste0('{"template":"/ajaxTemplate.jsp","serviceCalls":[{"name":"activityTileData","args":{"startDate":"',
                       start_date,
@@ -82,6 +82,11 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
                      zone2=zone2,
                      zone3=zone3,
                      stringsAsFactors=F)
+  }else if(what=="getRestingHeartRateData"){
+    df <- data.frame(time=as.character(unlist(sapply(dat_list$dataPoints, "[", "date"))),
+                     data=as.numeric(unlist(sapply(dat_list$dataPoints, "[", "value"))),
+                     stringsAsFactors=F)
+    names(df) <- c("time", what)
   }else{
     dat_list <- dat_list[[1]]$dataSets$activity$dataPoints
     df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
@@ -90,8 +95,14 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
     names(df) <- c("time", what)
   }
 
-  tz <- Sys.timezone()
-  if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
-  df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)
+  if(what=="getRestingHeartRateData"){
+    tz <- Sys.timezone()
+    if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
+    df$time <- as.POSIXct(df$time, "%Y-%m-%d", tz=tz)
+  }else{
+    tz <- Sys.timezone()
+    if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
+    df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)
+  }
   return(df)
 }
