@@ -29,9 +29,7 @@ df <- get_daily_data(cookie, what="steps", start_date="2015-01-13", end_date="20
 ggplot(df) + geom_point(aes(x=time, y=data))  
 ```
 ### New functions 
-- get_sleep_data()
-- get_weight_data() 
-- get_premium_export() 
+- get_activity_data()
 - get_intraday_data() , replaces deprecated get_15_min_data()
 
 Just added support for heart rate data in get_intraday_data() and get_daily_data()...  
