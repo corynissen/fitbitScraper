@@ -32,6 +32,13 @@ login <- function(email, password){
 
   a <- httr::POST(url, headers=headers, body=body)
   cookie <- a$cookies$u
-  if(is.null(cookie)){stop("login failed")}
+  if(is.null(cookie)){
+    all_cookies <- a$cookies
+    cookie <- all_cookies[grep("^u$", all_cookies$name, ignore.case=F),c("name", "value")]$value
+    if(is.null(cookie)){
+      stop("login failed")
+    }
+  }
+
   return(cookie)
 }
