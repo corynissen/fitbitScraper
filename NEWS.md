@@ -1,4 +1,8 @@
 
+### fitbitScraper 0.1.5
+* changed get_activity_data() function to have a working end_date.
+
+
 ### fitbitScraper 0.1.4
 * added get_activity_data() function
 * added "getRestingHeartRateData" to get_daily_data() function

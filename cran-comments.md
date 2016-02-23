@@ -1,6 +1,4 @@
 
-fitbitScraper 0.1.4
-* added get_activity_data() function
-* added "getRestingHeartRateData" to get_daily_data() function
-* added rememberMe parameter to login function
-* merged pull request #2, a change to the login function
+fitbitScraper 0.1.5
+* changed get_activity_data() function to have a working end_date.
+

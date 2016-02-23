@@ -1,5 +1,5 @@
 
-### fitBitScraper 0.1.4
+### fitBitScraper 0.1.5
 
 This package scrapes data from fitbit.com  
 It only works if you use email / password to login. Not sure about facebook or google login.  
@@ -28,13 +28,5 @@ ggplot(df) + geom_bar(aes(x=time, y=data, fill=data), stat="identity") +
 df <- get_daily_data(cookie, what="steps", start_date="2015-01-13", end_date="2015-01-20")  
 ggplot(df) + geom_point(aes(x=time, y=data))  
 ```
-### New functions 
-- get_activity_data()
-- get_intraday_data() , replaces deprecated get_15_min_data()
-
-Just added support for heart rate data in get_intraday_data() and get_daily_data()...  
-```R
-get_daily_data(cookie, what="getTimeInHeartRateZonesPerDay", start_date="2015-03-01",  
-               end_date="2015-03-10")  
-get_intraday_data(cookie, what="heart-rate", date="2015-03-10")  
-```
+### Changed function
+- get_activity_data() - end_date now works. Start_date removed.
