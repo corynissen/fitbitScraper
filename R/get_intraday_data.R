@@ -43,11 +43,11 @@ get_intraday_data <- function(cookie, what="steps", date){
   if(what=="heart-rate"){
     df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
                      data=as.numeric(unlist(sapply(dat_list, "[", "bpm"))),
-                     stringsAsFactors=F)
+                     stringsAsFactors=F, check.names=T)
   }else{
     df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
                      data=as.numeric(unlist(sapply(dat_list, "[", 2))),
-                     stringsAsFactors=F)
+                     stringsAsFactors=F, check.names=T)
   }
   names(df) <- c("time", what)
   tz <- Sys.timezone()
