@@ -87,6 +87,13 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
                      data=as.numeric(unlist(sapply(dat_list$dataPoints, "[", "value"))),
                      stringsAsFactors=F)
     names(df) <- c("time", what)
+  }else if(what=="caloriesBurnedVsIntake"){
+    burned_list <- dat_list[[1]]$dataSets$activity$dataPoints
+    intake_list <- dat_list[[1]]$dataSets$caloriesIntake$dataPoints
+    df <- data.frame(time=as.character(unlist(sapply(burned_list, "[", "dateTime"))),
+                     caloriesBurned=as.numeric(unlist(sapply(burned_list, "[", 2))),
+                     coloriesIntake=as.numeric(unlist(sapply(intake_list, "[", 2))),
+                     stringsAsFactors=F)
   }else{
     dat_list <- dat_list[[1]]$dataSets$activity$dataPoints
     df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
