@@ -44,7 +44,7 @@ get_activity_data <- function(cookie, end_date){
   body <- list(request=request, csrfToken = csrfToken)
   response <- httr::POST(url, body=body, httr::config(cookie=cookie))
 
-  dat_string <- as(response, "character")
+  dat_string <- methods::as(response, "character")
   dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
 
   df <- data.frame(id=sapply(dat_list[[2]]$result, "[[", "id"),

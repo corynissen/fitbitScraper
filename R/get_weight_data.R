@@ -28,7 +28,7 @@ get_weight_data <- function(cookie, start_date, end_date){
 
   response <- httr::GET(url, query=query, httr::config(cookie=cookie))
 
-  dat_string <- as(response, "character")
+  dat_string <- methods::as(response, "character")
   dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
   dat_list <- dat_list[[1]]$dataSets$weight$dataPoints
   dat_list <- sapply(dat_list, "[")

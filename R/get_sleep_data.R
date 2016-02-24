@@ -34,7 +34,7 @@ get_sleep_data <- function(cookie, start_date="2015-01-13", end_date="2015-01-20
   body <- list(request=request, csrfToken = csrfToken)
   response <- httr::POST(url, body=body, httr::config(cookie=cookie))
 
-  dat_string <- as(response, "character")
+  dat_string <- methods::as(response, "character")
   dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
   if("hasLoggedSleep" %in% names(dat_list)){
     summary <- list(avgSleepDuration = dat_list$avgSleepDuration,

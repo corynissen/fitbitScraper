@@ -37,7 +37,7 @@ get_intraday_data <- function(cookie, what="steps", date){
   body <- list(request=request, csrfToken = csrfToken)
   response <- httr::POST(url, body=body, httr::config(cookie=cookie))
 
-  dat_string <- as(response, "character")
+  dat_string <- methods::as(response, "character")
   dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
   dat_list <- dat_list[[1]]$dataSets$activity$dataPoints
   if(what=="heart-rate"){

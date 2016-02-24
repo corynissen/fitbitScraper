@@ -53,7 +53,7 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
     response <- httr::GET(url, query=query, httr::config(cookie=cookie))
   }
 
-  dat_string <- as(response, "character")
+  dat_string <- methods::as(response, "character")
   dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
 
   if(what=="getTimeInHeartRateZonesPerDay"){
