@@ -1,5 +1,6 @@
 
 ### fitbitScraper 0.1.5
+* use real URL in DESCRIPTION
 * added <> around URLs in DESCRIPTION
 * added methods and utils to imports in DESCRIPTION
 * added corresponding methods:: and utils:: in code

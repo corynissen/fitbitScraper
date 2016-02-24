@@ -3,9 +3,9 @@ Title: Scrapes Data from Fitbit
 Version: 0.1.5
 Author: Cory Nissen <corynissen@gmail.com> [aut, cre]
 Maintainer: Cory Nissen <corynissen@gmail.com>
-Description: Scrapes data from Fitbit <www.fitbit.com>. This does not use the official
+Description: Scrapes data from Fitbit <http://www.fitbit.com>. This does not use the official
     API, but instead uses the API that the web dashboard uses to generate the graphs
-    displayed on the dashboard after login at <www.fitbit.com>.
+    displayed on the dashboard after login at <http://www.fitbit.com>.
 Depends:
     R (>= 3.0.0)
 License: MIT + file LICENSE
