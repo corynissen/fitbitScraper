@@ -33,7 +33,7 @@ get_intraday_data <- function(cookie, what="steps", date){
                     '"},"method":"getIntradayData"}]}'
   )
   csrfToken <- stringr::str_extract(cookie,
-                                    "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
+    "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
   body <- list(request=request, csrfToken = csrfToken)
   response <- httr::POST(url, body=body, httr::config(cookie=cookie))
 

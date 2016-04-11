@@ -77,9 +77,8 @@ get_premium_export <- function(cookie, what="ACTIVITIES", start_date="2015-01-13
   }
 
   a <- httr::GET(paste0("https://www.fitbit.com/premium/export/download/",
-                      file_id))
+                        file_id))
   df <- utils::read.csv(text=methods::as(a, "character"), skip=1, 
                         stringsAsFactors=F)
-
   return(df)
 }

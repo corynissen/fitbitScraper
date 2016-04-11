@@ -30,7 +30,7 @@ get_sleep_data <- function(cookie, start_date="2015-01-13", end_date="2015-01-20
                     )
 
   csrfToken <- stringr::str_extract(cookie,
-                                    "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
+    "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
   body <- list(request=request, csrfToken = csrfToken)
   response <- httr::POST(url, body=body, httr::config(cookie=cookie))
 

@@ -24,8 +24,7 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
   if(!grepl("[0-9]{4}-[0-9]{2}-[0-9]{2}", end_date)){stop('end_date must have format "YYYY-MM-DD"')}
   if(!what %in% c("steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake",
                   "getTimeInHeartRateZonesPerDay", "getRestingHeartRateData")){
-    stop('what must be one of "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake",
-         "getTimeInHeartRateZonesPerDay", "getRestingHeartRateData"')
+    stop('what must be one of "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake", "getTimeInHeartRateZonesPerDay", "getRestingHeartRateData"')
   }
 
   if(what %in% c("getTimeInHeartRateZonesPerDay", "getRestingHeartRateData")){
@@ -39,7 +38,7 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
                       '"}]}'
     )
     csrfToken <- stringr::str_extract(cookie,
-                                      "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
+      "[A-Z0-9]{8}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[A-Z0-9]{4}\\-[0-9A-Z]{12}")
     body <- list(request=request, csrfToken = csrfToken)
     response <- httr::POST(url, body=body, httr::config(cookie=cookie))
   }else{
@@ -58,20 +57,20 @@ get_daily_data <- function(cookie, what="steps", start_date, end_date){
 
   if(what=="getTimeInHeartRateZonesPerDay"){
     df <- cbind(dat_list$dateTime, dat_list$value, stringsAsFactors=FALSE)
-    names(df) <- c("time", "zone1", "zone2", "zone3")
+    names(df)[1:3] <- c("time", "zone1", "zone2", "zone3")
   }else if(what=="getRestingHeartRateData"){
     df <- dat_list$dataPoints
     df <- df[, c("date", "value")]
-    names(df) <- c("time", "restingHeartRate")
+    names(df)[1:2] <- c("time", "restingHeartRate")
   }else if(what=="caloriesBurnedVsIntake"){
     df_burn <- dat_list[["graph"]][["dataSets"]][["activity"]][["dataPoints"]]
     df_int <- dat_list[["graph"]][["dataSets"]][["caloriesIntake"]][["dataPoints"]]
-    names(df_burn) <- c("time", "caloriesBurned")
-    names(df_int) <- c("time", "caloriesIntake")
+    names(df_burn)[1:2] <- c("time", "caloriesBurned")
+    names(df_int)[1:2] <- c("time", "caloriesIntake")
     df <- merge(df_burn, df_int, by="time")
   }else{
     df <- dat_list[["graph"]][["dataSets"]][["activity"]][["dataPoints"]]
-    names(df) <- c("time", what)
+    names(df)[1:2] <- c("time", what)
   }
 
   if(what=="getRestingHeartRateData"){
