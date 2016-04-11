@@ -1,5 +1,5 @@
 
-### fitbitScraper 0.1.
+### fitbitScraper 0.1.6
 * switch from RJSONIO to jsonlite
 
 ### fitbitScraper 0.1.5
