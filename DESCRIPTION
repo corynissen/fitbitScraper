@@ -1,6 +1,6 @@
 Package: fitbitScraper
 Title: Scrapes Data from Fitbit
-Version: 0.1.5
+Version: 0.1.6
 Author: Cory Nissen <corynissen@gmail.com> [aut, cre]
 Maintainer: Cory Nissen <corynissen@gmail.com>
 Description: Scrapes data from Fitbit <http://www.fitbit.com>. This does not use the official
@@ -13,7 +13,7 @@ LazyData: true
 Imports:
     httr,
     stringr,
-    RJSONIO,
+    jsonlite,
     methods,
     utils
 URL: https://github.com/corynissen/fitbitScraper

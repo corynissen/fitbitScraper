@@ -1,4 +1,7 @@
 
+### fitbitScraper 0.1.
+* switch from RJSONIO to jsonlite
+
 ### fitbitScraper 0.1.5
 * use real URL in DESCRIPTION
 * added <> around URLs in DESCRIPTION
