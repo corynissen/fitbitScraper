@@ -51,7 +51,7 @@ get_premium_export <- function(cookie, what="ACTIVITIES", start_date="2015-01-13
     stop("problem with request, this may be available only for premium subscribers")
   }
   file_id <- methods::as(response, "character")
-  file_id <- jsonio::fromJSON(file_id)
+  file_id <- jsonlite::fromJSON(file_id)
   file_id <- file_id["fileIdentifier"]
 
   # see if file ready for download
