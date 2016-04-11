@@ -29,12 +29,9 @@ get_weight_data <- function(cookie, start_date, end_date){
   response <- httr::GET(url, query=query, httr::config(cookie=cookie))
 
   dat_string <- methods::as(response, "character")
-  dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
-  dat_list <- dat_list[[1]]$dataSets$weight$dataPoints
-  dat_list <- sapply(dat_list, "[")
-  df <- data.frame(time=as.character(unlist(dat_list[1,])),
-                   weight=as.numeric(unlist(dat_list[2,])),
-                   stringsAsFactors=F)
+  dat_list <- jsonlite::fromJSON(dat_string)
+  df <- dat_list[["graph"]][["dataSets"]][["weight"]][["dataPoints"]]
+  names(df)[1:2] <- c("time", "weight")
   tz <- Sys.timezone()
   if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
   df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)

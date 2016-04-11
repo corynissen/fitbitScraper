@@ -35,25 +35,15 @@ get_sleep_data <- function(cookie, start_date="2015-01-13", end_date="2015-01-20
   response <- httr::POST(url, body=body, httr::config(cookie=cookie))
 
   dat_string <- methods::as(response, "character")
-  dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
+  dat_list <- jsonlite::fromJSON(dat_string)
+  
   if("hasLoggedSleep" %in% names(dat_list)){
     summary <- list(avgSleepDuration = dat_list$avgSleepDuration,
                     avgSleepTime = dat_list$avgSleepTime,
                     avgSleepScore = dat_list$avgSleepScore,
                     avgGraphicPercent = dat_list$avgGraphicPercent)
     # get individual day data
-    df <- data.frame(cbind(date = sapply(dat_list$entries, "[[", "date"),
-                           startTime = sapply(dat_list$entries, "[[", "startTime"),
-                           endTime = sapply(dat_list$entries, "[[", "endTime"),
-                           sleepDuration = sapply(dat_list$entries, "[[", "sleepDuration"),
-                           awakeCount = sapply(dat_list$entries, "[[", "awakeCount"),
-                           restlessCount = sapply(dat_list$entries, "[[", "restlessCount"),
-                           awakeDuration = sapply(dat_list$entries, "[[", "awakeDuration"),
-                           restlessDuration = sapply(dat_list$entries, "[[", "restlessDuration"),
-                           minAsleep = sapply(dat_list$entries, "[[", "minAsleep"),
-                           sleepQualityScoreB = sapply(dat_list$entries, "[[", "sleepQualityScoreB"),
-                           sleepQualityScoreA = sapply(dat_list$entries, "[[", "sleepQualityScoreA")),
-                     stringsAsFactors=F)
+    df <- dat_list[["entries"]]
   }else{
     stop("No sleep data available")
   }

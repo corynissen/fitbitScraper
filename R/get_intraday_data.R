@@ -38,20 +38,18 @@ get_intraday_data <- function(cookie, what="steps", date){
   response <- httr::POST(url, body=body, httr::config(cookie=cookie))
 
   dat_string <- methods::as(response, "character")
-  dat_list <- RJSONIO::fromJSON(dat_string, asText=TRUE)
-  dat_list <- dat_list[[1]]$dataSets$activity$dataPoints
+  dat_list <- jsonlite::fromJSON(dat_string)
+  
+  df <- dat_list[["dataSets"]][["activity"]][["dataPoints"]][[1]]
   if(what=="heart-rate"){
-    df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
-                     data=as.numeric(unlist(sapply(dat_list, "[", "bpm"))),
-                     stringsAsFactors=F, check.names=T)
+    tz <- Sys.timezone()
+    if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
+    df$time <- as.POSIXct(df$dateTime, "%Y-%m-%d %H:%M:%S", tz=tz)
   }else{
-    df <- data.frame(time=as.character(unlist(sapply(dat_list, "[", "dateTime"))),
-                     data=as.numeric(unlist(sapply(dat_list, "[", 2))),
-                     stringsAsFactors=F, check.names=T)
+    names(df)[1:2] <- c("time", what)
+    tz <- Sys.timezone()
+    if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
+    df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)
   }
-  names(df) <- c("time", what)
-  tz <- Sys.timezone()
-  if(is.null(tz)){tz <- format(Sys.time(),"%Z")}
-  df$time <- as.POSIXct(df$time, "%Y-%m-%d %H:%M:%S", tz=tz)
   return(df)
-  }
+}
