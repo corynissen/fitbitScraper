@@ -1,3 +1,3 @@
 
-### fitbitScraper 0.1.6
-* switch from RJSONIO to jsonlite
+### fitbitScraper 0.1.7
+* added vignette

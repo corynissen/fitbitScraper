@@ -1,6 +1,6 @@
 Package: fitbitScraper
 Title: Scrapes Data from Fitbit
-Version: 0.1.6
+Version: 0.1.7
 Author: Cory Nissen <corynissen@gmail.com> [aut, cre]
 Maintainer: Cory Nissen <corynissen@gmail.com>
 Description: Scrapes data from Fitbit <http://www.fitbit.com>. This does not use the official
@@ -18,3 +18,6 @@ Imports:
     utils
 URL: https://github.com/corynissen/fitbitScraper
 RoxygenNote: 5.0.1
+Suggests: knitr,
+    rmarkdown
+VignetteBuilder: knitr
