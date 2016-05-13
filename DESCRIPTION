@@ -6,21 +6,20 @@ Maintainer: Cory Nissen <corynissen@gmail.com>
 Description: Scrapes data from Fitbit <http://www.fitbit.com>. This does not use the official
     API, but instead uses the API that the web dashboard uses to generate the graphs
     displayed on the dashboard after login at <http://www.fitbit.com>.
-Depends:
-    R (>= 3.0.0)
+Depends: R (>= 3.0.0)
 License: MIT + file LICENSE
 LazyData: true
-Imports:
-    httr,
-    stringr,
-    jsonlite,
-    methods,
+Imports: 
+    httr, 
+    stringr, 
+    jsonlite, 
+    methods, 
     utils
 URL: https://github.com/corynissen/fitbitScraper
 RoxygenNote: 5.0.1
 Suggests: 
-    knitr,
-    rmarkdown,
-    ggplot2,
-    ggthemes
+    knitr, 
+    rmarkdown
 VignetteBuilder: knitr
+NeedsCompilation: no
+Packaged: 2016-05-13 13:41:27 UTC; 60018847
