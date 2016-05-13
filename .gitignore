@@ -3,3 +3,4 @@
 .RData
 test.R
 *.Rproj
+inst/doc
