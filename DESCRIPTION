@@ -18,6 +18,9 @@ Imports:
     utils
 URL: https://github.com/corynissen/fitbitScraper
 RoxygenNote: 5.0.1
-Suggests: knitr,
-    rmarkdown
+Suggests: 
+    knitr,
+    rmarkdown,
+    ggplot2,
+    ggthemes
 VignetteBuilder: knitr
