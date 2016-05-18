@@ -22,6 +22,7 @@ Suggests:
     rmarkdown,
     ggplot2,
     ggthemes
+BuildVignettes: false
 VignetteBuilder: knitr
 NeedsCompilation: no
 Packaged: 2016-05-13 13:41:27 UTC; 60018847
