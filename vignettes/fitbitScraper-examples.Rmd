@@ -10,9 +10,9 @@ vignette: >
 ---
 
 ## Installation
-Install fitbitScraper as you would a normal library. It exists on [CRAN](https://cran.r-project.org/web/packages/fitbitScraper/index.html), so a simple `install.packages("fitbitScraper")` should work.  
+Install fitbitScraper as you would a normal library. It exists on [CRAN](https://cran.r-project.org/package=fitbitScraper), so a simple `install.packages("fitbitScraper")` should work.  
 
-A development version exists on [Github](https://github.com/corynissen/fitbitScraper), and can be installed via [devtools](https://cran.r-project.org/web/packages/devtools/index.html). `devtools::install_github("corynissen/fitbitScraper")`  
+A development version exists on [Github](https://github.com/corynissen/fitbitScraper), and can be installed via [devtools](https://cran.r-project.org/package=devtools). `devtools::install_github("corynissen/fitbitScraper")`  
 
 ## Usage
 

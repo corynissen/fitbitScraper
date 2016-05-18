@@ -1,4 +1,5 @@
 
 ### fitbitScraper 0.1.7
+* VIGNETTE CAN ONLY BE BUILT ON MY MACHINE AS IT USES MY FITBIT LOGIN CREDENTIALS
+* fixed CRAN URLs
 * added vignette
-* vignette can only be built on my machine as it uses my login credentials for Fitbit
