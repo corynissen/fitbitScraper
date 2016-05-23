@@ -1,6 +1,8 @@
 
 ### fitbitScraper 0.1.7
 
+I've added [a vignette](https://cran.r-project.org/web/packages/fitbitScraper/vignettes/fitbitScraper-examples.html) with some examples.
+
 This package scrapes data from fitbit.com  
 It only works if you use email / password to login. Not sure about facebook or google login.  
 
