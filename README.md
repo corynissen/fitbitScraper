@@ -1,7 +1,10 @@
 
-### fitbitScraper 0.1.7
+### fitbitScraper 0.1.8
 
-I've added [a vignette](https://cran.r-project.org/web/packages/fitbitScraper/vignettes/fitbitScraper-examples.html) with some examples.
+New changes: 
+* Added minutesSedentary data to 'get_daily_data'
+* fixed bug in the column names in ‘get_daily_data’ for getTimeInHeartRateZonesPerDay  
+* if login returns a cookie that is character(0), throw error  
 
 This package scrapes data from fitbit.com  
 It only works if you use email / password to login. Not sure about facebook or google login.  
@@ -30,5 +33,3 @@ ggplot(df) + geom_bar(aes(x=time, y=data, fill=data), stat="identity") +
 df <- get_daily_data(cookie, what="steps", start_date="2015-01-13", end_date="2015-01-20")  
 ggplot(df) + geom_point(aes(x=time, y=data))  
 ```
-### Changed function
-- get_activity_data() - end_date now works. Start_date removed.
