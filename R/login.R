@@ -38,10 +38,9 @@ login <- function(email, password, rememberMe=FALSE){
   if(is.null(cookie)){
     all_cookies <- a$cookies
     cookie <- all_cookies[grep("^u$", all_cookies$name, ignore.case=F),"value"]
-    if(is.null(cookie)){
+    if(is.null(cookie) | identical(cookie, character(0))){
       stop("login failed")
     }
   }
-
   return(cookie)
 }
