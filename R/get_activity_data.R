@@ -5,17 +5,7 @@
 #' @param end_date Date in YYYY-MM-DD format
 #' @keywords data
 #' @export
-#' @return A dataframe with thirteen columns:
-#'  \item{id}{The fitbit ID of the activity}
-#'  \item{name}{Name for the type of activity}
-#'  \item{date}{Date of the activity}
-#'  \item{start_time}{Start time for the activity}
-#'  \item{distance}{Distance travelled during the activity}
-#'  \item{duration}{Duration in hours:minutes:seconds of the activity}
-#'  \item{calories}{Calories burned during the activity}
-#'  \item{steps}{Steps taken the activity}
-#'  \item{start_datetime}{A POSIXct encoded start time for the activity}
-#'  \item{end_datetime}{A POSIXct encoded end time for the activity}
+#' @return A dataframe with raw output from Fitbit
 #' @examples
 #' \dontrun{
 #' get_activity_data(cookie, end_date="2015-01-20")
@@ -60,6 +50,5 @@ get_activity_data <- function(cookie, end_date){
                                   format="%Y-%m-%d %H:%M", tz=tz)
   df$end_datetime <- as.POSIXct(paste0(df$date, " ", df$formattedEndTime),
                                   format="%Y-%m-%d %H:%M", tz=tz)
-  
   return(df)
 }
