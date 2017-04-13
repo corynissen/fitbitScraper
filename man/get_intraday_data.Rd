@@ -28,4 +28,3 @@ get_intraday_data(cookie, what="steps", date="2015-01-20")
 get_intraday_data
 }
 \keyword{data}
-

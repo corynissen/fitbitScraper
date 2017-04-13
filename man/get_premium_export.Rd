@@ -31,4 +31,3 @@ get_premium_export(cookie, what="ACTIVITIES", start_date="2015-01-13", end_date=
 get_premium_export
 }
 \keyword{data}
-

@@ -9,7 +9,7 @@ get_daily_data(cookie, what = "steps", start_date, end_date)
 \arguments{
 \item{cookie}{Cookie returned after login, specifically the "u" cookie}
 
-\item{what}{What data you wish to be returned. Options include "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake", "getTimeInHeartRateZonesPerDay", "getRestingHeartRateData"}
+\item{what}{What data you wish to be returned. Options include "steps", "distance", "floors", "minutesVery", "caloriesBurnedVsIntake", "minutesSedentary", "getTimeInHeartRateZonesPerDay", "getRestingHeartRateData"}
 
 \item{start_date}{Date in YYYY-MM-DD format}
 
@@ -30,4 +30,3 @@ get_daily_data(cookie, what="steps", start_date="2015-01-13", end_date="2015-01-
 get_daily_data
 }
 \keyword{data}
-

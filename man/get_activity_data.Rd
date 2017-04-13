@@ -12,17 +12,7 @@ get_activity_data(cookie, end_date)
 \item{end_date}{Date in YYYY-MM-DD format}
 }
 \value{
-A dataframe with thirteen columns:
- \item{id}{The fitbit ID of the activity}
- \item{name}{Name for the type of activity}
- \item{date}{Date of the activity}
- \item{start_time}{Start time for the activity}
- \item{distance}{Distance travelled during the activity}
- \item{duration}{Duration in hours:minutes:seconds of the activity}
- \item{calories}{Calories burned during the activity}
- \item{steps}{Steps taken the activity}
- \item{start_datetime}{A POSIXct encoded start time for the activity}
- \item{end_datetime}{A POSIXct encoded end time for the activity}
+A dataframe with raw output from Fitbit
 }
 \description{
 Get activity data from fitbit using cookie returned from login function
@@ -34,4 +24,3 @@ get_activity_data(cookie, end_date="2015-01-20")
 get_activity_data
 }
 \keyword{data}
-

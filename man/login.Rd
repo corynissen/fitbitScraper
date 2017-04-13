@@ -26,4 +26,3 @@ cookie <- login(email="corynissen<at>gmail.com", password="mypasswordhere")
 login
 }
 \keyword{login}
-

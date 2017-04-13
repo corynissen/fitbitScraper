@@ -16,7 +16,7 @@ Imports:
     methods, 
     utils
 URL: https://github.com/corynissen/fitbitScraper
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 Suggests: 
     knitr, 
     rmarkdown,

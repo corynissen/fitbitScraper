@@ -28,4 +28,3 @@ get_sleep_data(cookie, start_date="2015-01-13", end_date="2015-01-20")
 get_sleep_data
 }
 \keyword{data}
-
